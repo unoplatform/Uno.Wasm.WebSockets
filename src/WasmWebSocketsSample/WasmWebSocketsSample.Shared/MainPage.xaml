@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="WasmWebSocketsSample.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WasmWebSocketsSample"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Header="Server Address" x:Name="serverUrl" Margin="5" Text="wss://echo.websocket.org" />
+            <Button Grid.Column="1" Content="Connect" Margin="5" VerticalAlignment="Bottom" x:Name="connectButton" Click="ConnectButton_Click" />
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Header="Message" x:Name="messageContent" Margin="5" />
+            <Button Grid.Column="1" Content="Send" Margin="5" VerticalAlignment="Bottom" x:Name="sendButton" Click="OnSendMessage" />
+        </Grid>
+        <Grid Grid.Row="3" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Logs" FontSize="16" FontWeight="Bold" Margin="0, 0, 0, 5"/>
+            <TextBlock x:Name="logsTextBox" Grid.Row="1" IsReadOnly="True" FontFamily="Courier New" />
+        </Grid>
+    </Grid>
+</Page>
