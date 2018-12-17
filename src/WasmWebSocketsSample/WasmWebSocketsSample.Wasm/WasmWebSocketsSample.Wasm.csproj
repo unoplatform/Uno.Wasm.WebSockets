@@ -10,6 +10,7 @@
   <ItemGroup>
     <Content Include="..\WasmWebSocketsSample.UWP\Assets\*.png" Link="Assets\%(FileName)%(Extension)" />
     <Content Include="Fonts\winjs-symbols.woff2" />
+    <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="WasmCSS\Fonts.css" />
@@ -26,6 +27,7 @@
     You can safely remove this ItemGroup completely.
     -->
     <Compile Remove="Program.cs" />
+    <None Remove="web.config" />
     <Compile Include="Program.cs" />
     <Content Include="LinkerConfig.xml" />
   </ItemGroup>

@@ -4,6 +4,15 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
+  
+  <PropertyGroup>
+    <Authors>nventive</Authors>
+    <PackageProjectUrl>https://github.com/nventive/Uno.Wasm.WebSockets</PackageProjectUrl>
+    <PackageIconUrl>https://nv-assets.azurewebsites.net/logos/uno.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/nventive/Uno.Wasm.WebSockets</RepositoryUrl>
+    <Description>This package provides a WebAssembly implementation of the System.Net.WebSocket base class, to be used along with the Uno.Wasm.Bootstrap package.</Description>
+    <Copyright>Copyright (C) 2015-2018 nventive inc. - all rights reserved</Copyright>
+  </PropertyGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="WasmScripts\WasmWebSockets.js" />

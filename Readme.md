@@ -5,9 +5,19 @@ class for WebAssembly, named `Uno.Wasm.WebSockets.WasmWebSocket`.
 
 This package requires the use of the [Uno.Wasm.Bootstrap](https://www.nuget.org/packages/Uno.Wasm.Bootstrap) package to work properly.
 
+## Sample applications
+
+Try WebSockets from .NET code live here: https://websockets-wasm.platform.uno
+
+The samples applications use the [Uno Platform](https://github.com/nventive/Uno) and are built to use WebSockets in
+their respective platforms. the WebAssembly one uses `Uno.Wasm.WebSockets.WasmWebSocket`.
+
+Open [`Uno.Wasm.WebSockets.sln`] to discover the sample, in the `WasmWebSocketsSample.Shared` project.
+
 ## How to use the WasmWebSocket class
 
-Given a project that already references `Uno.Wasm.Bootstrap`, add the [`Uno.Wasm.WebSockets`](https://www.nuget.org/packages/Uno.Wasm.WebSockets) nuget package, and write the following:
+Given a project that already references `Uno.Wasm.Bootstrap`, add the [`Uno.Wasm.WebSockets`](https://www.nuget.org/packages/Uno.Wasm.WebSockets) 
+nuget package, and write the following:
 
 ```csharp
 var ws = new Uno.Wasm.WebSockets.WasmWebSocket();
