@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28315.86
+# Visual Studio 15
+VisualStudioVersion = 15.0.28306.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uno.Wasm.WebSockets", "Uno.Wasm.WebSockets\Uno.Wasm.WebSockets.csproj", "{C8EC50B6-0085-42B4-8E14-811E56E02914}"
 EndProject
@@ -148,6 +148,7 @@ Global
 		{BCD67AAC-CE3F-4503-AEBC-8B8BCEABF5C1}.Debug|x86.Build.0 = Debug|x86
 		{BCD67AAC-CE3F-4503-AEBC-8B8BCEABF5C1}.Debug|x86.Deploy.0 = Debug|x86
 		{BCD67AAC-CE3F-4503-AEBC-8B8BCEABF5C1}.Release|Any CPU.ActiveCfg = Release|x86
+		{BCD67AAC-CE3F-4503-AEBC-8B8BCEABF5C1}.Release|Any CPU.Build.0 = Release|x86
 		{BCD67AAC-CE3F-4503-AEBC-8B8BCEABF5C1}.Release|ARM.ActiveCfg = Release|ARM
 		{BCD67AAC-CE3F-4503-AEBC-8B8BCEABF5C1}.Release|ARM.Build.0 = Release|ARM
 		{BCD67AAC-CE3F-4503-AEBC-8B8BCEABF5C1}.Release|ARM.Deploy.0 = Release|ARM
@@ -232,6 +233,7 @@ Global
 		{CE2E2F73-48E6-4771-A28F-374074678CF6}.Debug|x64.ActiveCfg = Debug|iPhone
 		{CE2E2F73-48E6-4771-A28F-374074678CF6}.Debug|x86.ActiveCfg = Debug|iPhone
 		{CE2E2F73-48E6-4771-A28F-374074678CF6}.Release|Any CPU.ActiveCfg = Release|iPhone
+		{CE2E2F73-48E6-4771-A28F-374074678CF6}.Release|Any CPU.Build.0 = Release|iPhone
 		{CE2E2F73-48E6-4771-A28F-374074678CF6}.Release|ARM.ActiveCfg = Release|iPhone
 		{CE2E2F73-48E6-4771-A28F-374074678CF6}.Release|iPhone.ActiveCfg = Release|iPhone
 		{CE2E2F73-48E6-4771-A28F-374074678CF6}.Release|iPhone.Build.0 = Release|iPhone
