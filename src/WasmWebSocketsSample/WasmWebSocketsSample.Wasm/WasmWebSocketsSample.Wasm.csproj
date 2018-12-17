@@ -32,6 +32,7 @@
   <ItemGroup>
     <PackageReference Include="Uno.UI" Version="1.43.0-dev.498" />
     <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.127" />
+    <PackageReference Include="Uno.Wasm.MonoRuntime" Version="1.0.0-dev0000" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Uno.Wasm.WebSockets\Uno.Wasm.WebSockets.csproj" />
