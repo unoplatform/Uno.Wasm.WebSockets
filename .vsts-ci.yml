@@ -44,7 +44,7 @@ jobs:
  
   - task: CopyFiles@2
     inputs:
-      SourceFolder: $(build.sourcesdirectory)/src/WasmWebSocketsSample/WasmWebSocketsSample.Wasm/bin/Debug/netstandard2.0/dist
+      SourceFolder: $(build.sourcesdirectory)/src/WasmWebSocketsSample/WasmWebSocketsSample.Wasm/bin/Release/netstandard2.0/dist
       Contents: "**/*.*"
       TargetFolder: $(build.artifactstagingdirectory)\wasm
       CleanTargetFolder: false
