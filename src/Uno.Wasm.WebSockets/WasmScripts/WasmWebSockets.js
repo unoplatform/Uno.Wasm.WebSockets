@@ -87,7 +87,7 @@ var WebSocketInterop = {
     },
 
     close: function (handle, code, statusDescription) {
-        getActiveSocket(handle).close(code, statusDescription);
+        this.getActiveSocket(handle).close(code, statusDescription);
 
         delete this.activeSockets[handle];
     },
