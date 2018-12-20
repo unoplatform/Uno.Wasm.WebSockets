@@ -1,61 +1,132 @@
-﻿<Page
-    x:Class="WasmWebSocketsSample.MainPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:WasmWebSocketsSample"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:wasm="http://uno.ui/wasm"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d wasm">
+﻿<Page x:Class="WasmWebSocketsSample.MainPage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:WasmWebSocketsSample"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:wasm="http://uno.ui/wasm"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  mc:Ignorable="d wasm">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        
-        <StackPanel Grid.Row="0"
-					Padding="15,15,15,15"
-					Background="White">
-            <TextBlock FontWeight="Bold"
-					   FontSize="20"
-					   TextWrapping="Wrap">
-			<Run Text="Welcome to the" />
-			<Hyperlink NavigateUri="https://platform.uno">Uno Platform </Hyperlink>
-			<Run Text="sample app for" />
-			<Hyperlink NavigateUri="https://github.com/nventive/Uno.Wasm.WebSockets">WebSockets </Hyperlink>
-			<wasm:Run Text="running C# on" />
-			<wasm:Run Text="WebAssembly" />
-            </TextBlock>
-        </StackPanel>
+	<Page.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="UnoPlatformShell.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Page.Resources>
 
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-            <TextBox Header="Server Address" x:Name="serverUrl" Margin="5" Text="wss://echo.websocket.org" />
-            <Button Grid.Column="1" Content="Connect" Margin="5" VerticalAlignment="Bottom" x:Name="connectButton" Click="ConnectButton_Click" />
-        </Grid>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-            <TextBox Header="Message" x:Name="messageContent" Margin="5" />
-            <Button Grid.Column="1" Content="Send" Margin="5" VerticalAlignment="Bottom" x:Name="sendButton" Click="OnSendMessage" />
-        </Grid>
-        <Grid Grid.Row="3" Margin="5">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <TextBlock Text="Logs" FontSize="16" FontWeight="Bold" Margin="0, 0, 0, 5"/>
-            <ScrollViewer Grid.Row="1" Background="Black">
-                <TextBlock x:Name="logsTextBox" Foreground="White" FontFamily="Courier New" />
-            </ScrollViewer>
-        </Grid>
-    </Grid>
+	<!-- UnoPlatformShell -->
+	<local:UnoPlatformShell AppName="WebSockets"
+							AppAuthor="Uno Team"
+							LinkToOriginalApp="https://github.com/nventive/Uno.Wasm.WebSockets"
+							LinkToAppAuthor="https://github.com/nventive"
+							LinkToUnoPlatformApp="https://github.com/nventive/Uno.Wasm.WebSockets"
+							LinkToTwitter="https://twitter.com/?status=@UWPEverywhere:%20WebSockets%20App%20on%20WASM%20https://github.com/nventive/Uno.Wasm.WebSockets"
+							VersionNumber="buildVersion">
+
+		<!-- About Content -->
+		<local:UnoPlatformShell.AboutContent>
+			<StackPanel>
+
+				<!-- About Content Line 1 -->
+				<TextBlock TextWrapping="Wrap"
+						   Foreground="{StaticResource Color02Brush}"
+						   FontStyle="Italic"
+						   FontSize="14">
+						
+					This application is running 
+					<Bold>
+						entirely locally
+					</Bold> 
+					on your machine, no code is being sent out to the wire.
+				</TextBlock>
+
+				<!-- About Content Line 2 -->
+				<TextBlock TextWrapping="Wrap"
+						   Foreground="{StaticResource Color02Brush}"
+						   FontStyle="Italic"
+						   FontSize="12"
+						   Margin="0,16,0,0">
+					
+					The Mono runtime is using the interpreted mode (which is currently about 
+					
+					<!-- Link to WASM Benchmark -->
+					<Hyperlink NavigateUri="https://github.com/stefan-schweiger/dotWasmBenchmark"
+								Foreground="{StaticResource Color02Brush}">
+						<Bold>
+							<Underline>
+								50x slower than it should be
+							</Underline>
+						</Bold>
+					</Hyperlink>
+					). For a better experience run it in Microsoft Edge or Mozilla Firefox.
+				</TextBlock>
+			</StackPanel>
+		</local:UnoPlatformShell.AboutContent>
+
+		<!-- App Content -->
+		<local:UnoPlatformShell.AppContent>
+
+			<Grid Padding="16">
+
+				<Grid.RowDefinitions>
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+
+				<StackPanel Grid.Row="0">
+
+					<!-- Server Address Input -->
+					<TextBox x:Name="serverUrl"
+							 Header="Server Address"
+							 Text="wss://echo.websocket.org"
+							 Width="300"
+							 HorizontalAlignment="Left"
+							 Margin="0,0,0,0" />
+
+					<!-- Connect -->
+					<Button x:Name="connectButton"
+							Content="Connect"
+							Click="ConnectButton_Click"
+							Background="{StaticResource Color01Brush}"
+							Foreground="{StaticResource Color02Brush}"
+							VerticalAlignment="Bottom"
+							Margin="0,8,0,0"
+							Grid.Column="1" />
+
+					<!-- Message Input -->
+					<TextBox x:Name="messageContent"
+							 Header="Message"
+							 Width="300"
+							 HorizontalAlignment="Left"
+							 Margin="0,12,0,0" />
+
+					<!-- Send Button -->
+					<Button x:Name="sendButton"
+							Content="Send"
+							Click="OnSendMessage"
+							Background="{StaticResource Color01Brush}"
+							Foreground="{StaticResource Color02Brush}"
+							VerticalAlignment="Bottom"
+							Margin="0,8,0,0"
+							Grid.Column="1" />
+
+					<!-- Logs -->
+					<TextBlock Text="Logs"
+							   FontSize="16"
+							   FontWeight="Bold"
+							   Margin="0,12,0,0" />
+				</StackPanel>
+
+				<ScrollViewer Grid.Row="1"
+							  Background="{StaticResource Color01Brush}"
+							  Margin="0,8,0,0"
+							  Padding="8">
+					<TextBlock x:Name="logsTextBox"
+							   Foreground="{StaticResource Color02Brush}"
+							   FontFamily="Courier New" />
+				</ScrollViewer>
+			</Grid>
+		</local:UnoPlatformShell.AppContent>
+	</local:UnoPlatformShell>
 </Page>
