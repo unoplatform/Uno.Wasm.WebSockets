@@ -36,7 +36,7 @@ var WebSocketInterop = {
 
         webSocket.onclose = function (evt) {
             var handleStr = MonoRuntime.mono_string(String(handle));
-            MonoRuntime.call_method(WebSocketInterop.dispatchCloseMethod, null, [handleStr, webSocket.readyState]);
+            MonoRuntime.call_method(WebSocketInterop.dispatchClosedMethod, null, [handleStr, webSocket.readyState]);
         };
 
         webSocket.onmessage = function (evt) {
@@ -124,7 +124,7 @@ var WebSocketInterop = {
             WebSocketInterop.dispatchMessageMethod = WebSocketInterop.findMonoMethod(WebSocketInterop.wasmWebSocketClass, "DispatchMessage");
             WebSocketInterop.dispatchErrorMethod = WebSocketInterop.findMonoMethod(WebSocketInterop.wasmWebSocketClass, "DispatchError");
             WebSocketInterop.dispatchReceivedBinaryMethod = WebSocketInterop.findMonoMethod(WebSocketInterop.wasmWebSocketClass, "DispatchReceivedBinary");
-            WebSocketInterop.dispatchCloseMethod = WebSocketInterop.findMonoMethod(WebSocketInterop.wasmWebSocketClass, "DispatchClose");
+            WebSocketInterop.dispatchClosedMethod = WebSocketInterop.findMonoMethod(WebSocketInterop.wasmWebSocketClass, "DispatchClosed");
         }
     },
 
