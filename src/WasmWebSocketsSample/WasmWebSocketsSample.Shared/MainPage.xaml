@@ -21,7 +21,6 @@
 							LinkToOriginalApp="https://github.com/nventive/Uno.Wasm.WebSockets"
 							LinkToAppAuthor="https://github.com/nventive"
 							LinkToUnoPlatformApp="https://github.com/nventive/Uno.Wasm.WebSockets"
-							LinkToTwitter="https://twitter.com/?status=@UWPEverywhere:%20WebSockets%20App%20on%20WASM%20https://github.com/nventive/Uno.Wasm.WebSockets"
 							VersionNumber="buildVersion">
 
 		<!-- About Content -->
