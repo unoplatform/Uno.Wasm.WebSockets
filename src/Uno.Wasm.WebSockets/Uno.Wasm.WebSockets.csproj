@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -13,9 +12,11 @@
     <Description>This package provides a WebAssembly implementation of the System.Net.WebSocket base class, to be used along with the Uno.Wasm.Bootstrap package.</Description>
     <Copyright>Copyright (C) 2015-2018 nventive inc. - all rights reserved</Copyright>
   </PropertyGroup>
-
+  
   <ItemGroup>
+    <EmbeddedResource Include="Uno.Wasm.WebSockets.xml">
+      <LogicalName>Uno.Wasm.WebSockets.xml</LogicalName>
+    </EmbeddedResource>
     <EmbeddedResource Include="WasmScripts\WasmWebSockets.js" />
   </ItemGroup>
-
 </Project>
