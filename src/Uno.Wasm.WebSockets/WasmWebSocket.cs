@@ -173,8 +173,8 @@ namespace Uno.Wasm.WebSockets
         internal static void DispatchConnected(string handleStr, string subProtocol) 
             => GetWebSocket(handleStr).DispatchConnected(subProtocol);
 
-        internal static void DispatchReceivedBinary(string handleStr, byte[] array)
-            => GetWebSocket(handleStr).DispatchReceivedBinary(array);
+        internal static void DispatchReceivedBinary(string handleStr, IntPtr pArray, int arraySize)
+            => GetWebSocket(handleStr).DispatchReceivedBinary(pArray, arraySize);
 
         internal static void DispatchClosed(string handleStr, int state, string error)
             => GetWebSocket(handleStr).DispatchClosed(state, error);
@@ -192,9 +192,12 @@ namespace Uno.Wasm.WebSockets
             throw new InvalidOperationException($"Unknown WebSocket [{handleString}]");
         }
 
-        private void DispatchReceivedBinary(byte[] array)
+        private void DispatchReceivedBinary(IntPtr pArray, int arraySize)
         {
-            Debug.WriteLine($"DispatchReceivedBinary {array.Length} bytes");
+            Debug.WriteLine($"DispatchReceivedBinary {arraySize} bytes");
+
+            var array = new byte[arraySize];
+            Marshal.Copy(pArray, array, 0, arraySize);
 
             _messages.Enqueue(new ServerMessage(array));
 

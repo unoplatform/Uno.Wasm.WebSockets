@@ -23,20 +23,15 @@ var WebSocketInterop = {
         webSocket.onopen = function () {
             if (this.debug) console.log(`Socket is opened [${webSocket.protocol}] ${WebSocketInterop.dispatchConnectedMethod}`);
 
-            var handleStr = MonoRuntime.mono_string(String(handle));
-            var protocolStr = webSocket.protocol.length !== 0 ? MonoRuntime.mono_string(webSocket.protocol) : null;
-            MonoRuntime.call_method(WebSocketInterop.dispatchConnectedMethod, null, [handleStr, protocolStr]);
+            WebSocketInterop.dispatchConnectedMethod(String(handle), webSocket.protocol);
         };
 
         webSocket.onerror = function (evt) {
-            var handleStr = MonoRuntime.mono_string(String(handle));
-            var errorStr = MonoRuntime.mono_string(String(evt.error));
-            MonoRuntime.call_method(WebSocketInterop.dispatchErrorMethod, null, [handleStr, errorStr]);
+            WebSocketInterop.dispatchErrorMethod(String(handle), String(evt.error));
         };
 
         webSocket.onclose = function (evt) {
-            var handleStr = MonoRuntime.mono_string(String(handle));
-            MonoRuntime.call_method(WebSocketInterop.dispatchClosedMethod, null, [handleStr, webSocket.readyState]);
+            WebSocketInterop.dispatchClosedMethod(String(handle), webSocket.readyState);
         };
 
         webSocket.onmessage = function (evt) {
@@ -61,11 +56,8 @@ var WebSocketInterop = {
                             // There should be a better way to do this.
 
                             writeArrayToMemory(new Int8Array(result), ptr);
-                            
-                            var array = Module._mono_wasm_typed_array_new(ptr, arraySize, 1, 11 /*MARSHAL_ARRAY_BYTE*/);
 
-                            var handleStr = MonoRuntime.mono_string(String(handle));
-                            MonoRuntime.call_method(WebSocketInterop.dispatchReceivedBinaryMethod, null, [handleStr, array]);
+                            WebSocketInterop.dispatchReceivedBinaryMethod(String(handle), array, arraySize);
                         }
                         finally {
                             Module._free(ptr);
@@ -116,25 +108,9 @@ var WebSocketInterop = {
 
     ensureInitialized: function () {
 
-        if (WebSocketInterop.asm === undefined) {
-            WebSocketInterop.asm = MonoRuntime.assembly_load("Uno.Wasm.WebSockets");
-            WebSocketInterop.wasmWebSocketClass = MonoRuntime.find_class(WebSocketInterop.asm, "Uno.Wasm.WebSockets", "WasmWebSocket");
-
-            WebSocketInterop.dispatchConnectedMethod = WebSocketInterop.findMonoMethod(WebSocketInterop.wasmWebSocketClass, "DispatchConnected");
-            WebSocketInterop.dispatchMessageMethod = WebSocketInterop.findMonoMethod(WebSocketInterop.wasmWebSocketClass, "DispatchMessage");
-            WebSocketInterop.dispatchErrorMethod = WebSocketInterop.findMonoMethod(WebSocketInterop.wasmWebSocketClass, "DispatchError");
-            WebSocketInterop.dispatchReceivedBinaryMethod = WebSocketInterop.findMonoMethod(WebSocketInterop.wasmWebSocketClass, "DispatchReceivedBinary");
-            WebSocketInterop.dispatchClosedMethod = WebSocketInterop.findMonoMethod(WebSocketInterop.wasmWebSocketClass, "DispatchClosed");
-        }
-    },
-
-    findMonoMethod: function (klass, methodName) {
-        var method = MonoRuntime.find_method(klass, methodName, -1);
-
-        if (method === null) {
-            throw `Unable to find managed method ${methodName}`;
-        }
-
-        return method;
+        WebSocketInterop.dispatchConnectedMethod = Module.mono_bind_static_method("[Uno.Wasm.WebSockets] Uno.Wasm.WebSockets.WasmWebSocket:DispatchConnected");
+        WebSocketInterop.dispatchErrorMethod = Module.mono_bind_static_method("[Uno.Wasm.WebSockets] Uno.Wasm.WebSockets.WasmWebSocket:DispatchError");
+        WebSocketInterop.dispatchReceivedBinaryMethod = Module.mono_bind_static_method("[Uno.Wasm.WebSockets] Uno.Wasm.WebSockets.WasmWebSocket:DispatchReceivedBinary");
+        WebSocketInterop.dispatchClosedMethod = Module.mono_bind_static_method("[Uno.Wasm.WebSockets] Uno.Wasm.WebSockets.WasmWebSocket:DispatchClosed");
     }
 };
