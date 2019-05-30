@@ -51,13 +51,9 @@ var WebSocketInterop = {
 
                         var ptr = Module._malloc(arraySize);
                         try {
-                            // This section is not particularly efficient, as the received message is copied twice,
-                            // once at the ptr location, then again in the _mono_wasm_typed_array_new method.
-                            // There should be a better way to do this.
-
                             writeArrayToMemory(new Int8Array(result), ptr);
 
-                            WebSocketInterop.dispatchReceivedBinaryMethod(String(handle), array, arraySize);
+                            WebSocketInterop.dispatchReceivedBinaryMethod(String(handle), ptr, arraySize);
                         }
                         finally {
                             Module._free(ptr);
