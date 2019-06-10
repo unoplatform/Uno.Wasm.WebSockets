@@ -19,6 +19,7 @@ var WebSocketInterop = {
         if (this.debug) console.log("WebSocketInterop: connect " + url);
 
         var webSocket = new WebSocket(url);
+        webSocket.binaryType = "arraybuffer";
 
         webSocket.onopen = function () {
             if (this.debug) console.log(`Socket is opened [${webSocket.protocol}] ${WebSocketInterop.dispatchConnectedMethod}`);
@@ -37,34 +38,27 @@ var WebSocketInterop = {
         webSocket.onmessage = function (evt) {
             var msg = evt.data;
 
-            if (msg instanceof Blob) {
-                if (this.debug) console.log(`Received Blob`);
+            if (msg instanceof ArrayBuffer) {
+                if (this.debug) console.log(`Received ArrayBuffer`);
 
-                reader = new FileReader();
+                if (msg !== null) {
+                    var arraySize = msg.byteLength;
 
-                reader.onload = e => {
-                    var result = e.target.result;
-                    if (result !== null) {
-                        var arraySize = result.byteLength;
+                    if (this.debug) console.log(`Result: ${msg} / ${arraySize}`);
 
-                        if (this.debug) console.log(`Result: ${result} / ${arraySize}`);
+                    var ptr = Module._malloc(arraySize);
+                    try {
+                        writeArrayToMemory(new Int8Array(msg), ptr);
 
-                        var ptr = Module._malloc(arraySize);
-                        try {
-                            writeArrayToMemory(new Int8Array(result), ptr);
-
-                            WebSocketInterop.dispatchReceivedBinaryMethod(String(handle), ptr, arraySize);
-                        }
-                        finally {
-                            Module._free(ptr);
-                        }
+                        WebSocketInterop.dispatchReceivedBinaryMethod(String(handle), ptr, arraySize);
                     }
-                    else {
-                        if (this.debug) console.error(`empty blob ? ${msg}`);
+                    finally {
+                        Module._free(ptr);
                     }
-                };
-
-                reader.readAsArrayBuffer(msg);
+                }
+                else {
+                    if (this.debug) console.error(`empty arraybuffer ? ${msg}`);
+                }
             }
             else {
                 if (this.debug) console.log(`Received message ${msg}`);
