@@ -173,8 +173,8 @@ namespace Uno.Wasm.WebSockets
         internal static void DispatchConnected(string handleStr, string subProtocol) 
             => GetWebSocket(handleStr).DispatchConnected(subProtocol);
 
-        internal static void DispatchReceivedBinary(string handleStr, IntPtr pArray, int arraySize)
-            => GetWebSocket(handleStr).DispatchReceivedBinary(pArray, arraySize);
+        internal static void DispatchReceivedBinary(string handleStr, int pArray, int arraySize)
+            => GetWebSocket(handleStr).DispatchReceivedBinary((IntPtr)pArray, arraySize);
 
         internal static void DispatchClosed(string handleStr, int state, string error)
             => GetWebSocket(handleStr).DispatchClosed(state, error);
