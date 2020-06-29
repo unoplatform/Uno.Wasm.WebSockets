@@ -32,7 +32,7 @@ var WebSocketInterop = {
         };
 
         webSocket.onclose = function (evt) {
-            WebSocketInterop.dispatchClosedMethod(String(handle), webSocket.readyState);
+            WebSocketInterop.dispatchClosedMethod(String(handle), webSocket.readyState, String(evt.reason));
         };
 
         webSocket.onmessage = function (evt) {

@@ -176,10 +176,10 @@ namespace Uno.Wasm.WebSockets
         internal static void DispatchReceivedBinary(string handleStr, int pArray, int arraySize)
             => GetWebSocket(handleStr).DispatchReceivedBinary((IntPtr)pArray, arraySize);
 
-        internal static void DispatchClosed(string handleStr, int state, string error)
+		internal static void DispatchClosed(string handleStr, int state, string error) 
             => GetWebSocket(handleStr).DispatchClosed(state, error);
 
-        private static WasmWebSocket GetWebSocket(string handleString)
+		private static WasmWebSocket GetWebSocket(string handleString)
         {
             if (int.TryParse(handleString, out var handle))
             {
