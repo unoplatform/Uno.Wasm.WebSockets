@@ -16,7 +16,7 @@
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
     <ResourcesDirectory>..\WasmWebSocketsSample.Shared\Strings</ResourcesDirectory>
@@ -54,9 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Uno.UI" Version="1.45.0-dev.1652" />
+    <PackageReference Include="Uno.UI" Version="3.0.0-dev.636" />
     <PackageReference Include="Uno.UI.Sample.Banner">
-      <Version>1.44.0-dev.16</Version>
+      <Version>1.44.0-dev.23</Version>
     </PackageReference>
     <PackageReference Include="Uno.UniversalImageLoader" Version="1.9.32" />
   </ItemGroup>

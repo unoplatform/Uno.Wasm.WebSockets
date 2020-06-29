@@ -102,9 +102,9 @@
     <BundleResource Include="Resources\Fonts\winjs-symbols.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Uno.UI" Version="1.45.0-dev.1652" />
+    <PackageReference Include="Uno.UI" Version="3.0.0-dev.636" />
     <PackageReference Include="Uno.UI.Sample.Banner">
-      <Version>1.44.0-dev.16</Version>
+      <Version>1.44.0-dev.23</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="..\WasmWebSocketsSample.Shared\WasmWebSocketsSample.Shared.projitems" Label="Shared" Condition="Exists('..\WasmWebSocketsSample.Shared\WasmWebSocketsSample.Shared.projitems')" />
