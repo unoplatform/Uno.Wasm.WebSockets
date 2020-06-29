@@ -17,11 +17,11 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
-    <PackageReference Include="Uno.UI" Version="1.45.0-dev.1652" />
-    <PackageReference Include="Uno.UI.Sample.Banner" Version="1.44.0-dev.16" />
-    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.281" />
-    <DotNetCliToolReference Include="Uno.Wasm.Bootstrap.Cli" Version="1.0.0-dev.281" />
-  </ItemGroup>
+    <PackageReference Include="Uno.UI" Version="3.0.0-dev.636" />
+    <PackageReference Include="Uno.UI.Sample.Banner" Version="1.44.0-dev.23" />
+		<PackageReference Include="Uno.Wasm.Bootstrap" Version="1.3.0-dev.44" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="1.3.0-dev.44" />
+	</ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Uno.Wasm.WebSockets\Uno.Wasm.WebSockets.csproj" />
   </ItemGroup>

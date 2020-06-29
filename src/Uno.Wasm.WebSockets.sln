@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28306.52
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30223.230
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uno.Wasm.WebSockets", "Uno.Wasm.WebSockets\Uno.Wasm.WebSockets.csproj", "{C8EC50B6-0085-42B4-8E14-811E56E02914}"
 EndProject
@@ -19,6 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WasmWebSocketsSample.Droid"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		WasmWebSocketsSample\WasmWebSocketsSample.Shared\WasmWebSocketsSample.Shared.projitems*{5c85c066-5011-48fd-9e32-eabfe50a4610}*SharedItemsImports = 5
 		WasmWebSocketsSample\WasmWebSocketsSample.Shared\WasmWebSocketsSample.Shared.projitems*{6279c845-92f8-4333-ab99-3d213163593c}*SharedItemsImports = 13
 		WasmWebSocketsSample\WasmWebSocketsSample.Shared\WasmWebSocketsSample.Shared.projitems*{74245a11-6799-4e02-82f0-3fe6518d6e74}*SharedItemsImports = 4
 		WasmWebSocketsSample\WasmWebSocketsSample.Shared\WasmWebSocketsSample.Shared.projitems*{bcd67aac-ce3f-4503-aebc-8b8bceabf5c1}*SharedItemsImports = 4
