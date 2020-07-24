@@ -20,7 +20,6 @@ namespace Uno.Wasm.WebSockets
 
         private TaskCompletionSource<bool> _pendingConnect;
         private TaskCompletionSource<WebSocketReceiveResult> _pendingReceive;
-        private TaskCompletionSource<bool> _pendingClose;
         private WebSocketCloseStatus? _closeStatus;
         private string _closeStatusDescription;
 
@@ -67,6 +66,11 @@ namespace Uno.Wasm.WebSockets
 
         public override async Task SendAsync(ArraySegment<byte> segment, WebSocketMessageType messageType, bool endOfMessage, CancellationToken cancellationToken)
         {
+            if (_state != WebSocketState.Open)
+            {
+                throw new InvalidOperationException("WebSocket is not connected.");
+            }
+
             await Task.Yield();
 
             Debug.WriteLine($"SendAsync {segment.Count} bytes, {messageType}, endOfMessage: {endOfMessage}");
@@ -100,6 +104,11 @@ namespace Uno.Wasm.WebSockets
 
         public override async Task<WebSocketReceiveResult> ReceiveAsync(ArraySegment<byte> arraySegment, CancellationToken none)
         {
+            if (_state != WebSocketState.Open)
+            {
+                throw new InvalidOperationException("WebSocket is not connected.");
+            }
+
             if (_messages.Count != 0)
             {
                 return ProcessQueue(arraySegment);
@@ -113,10 +122,11 @@ namespace Uno.Wasm.WebSockets
             }
         }
 
-        public override void Abort() {
+        public override void Abort()
+        {
             if (_state == WebSocketState.Open)
             {
-                var unused = CloseAsync(WebSocketCloseStatus.NormalClosure, "Connection was aborted", CancellationToken.None);
+                _ = CloseAsync(WebSocketCloseStatus.NormalClosure, "Connection was aborted", CancellationToken.None);
             }
         }
 
@@ -232,12 +242,9 @@ namespace Uno.Wasm.WebSockets
 
         private void DispatchClosed(int state, string error)
         {
-            if(_pendingClose != null)
-            {
-                _state = MapJavascriptSocketState(state);
-                _pendingClose.TrySetResult(true);
-                _pendingClose = null;
-            }
+            Debug.WriteLine($"Closed: {state} error: {error}");
+
+            _state = MapJavascriptSocketState(state);
         }
 
         private WebSocketState MapJavascriptSocketState(int state)
