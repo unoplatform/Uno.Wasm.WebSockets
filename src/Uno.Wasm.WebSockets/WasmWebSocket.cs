@@ -46,7 +46,7 @@ namespace Uno.Wasm.WebSockets
 
             Debug.WriteLine($"Connecting to {uri}");
 
-            var result = Runtime.InvokeJS($"WebSocketInterop.connect({GetHandle()}, \"{uri.OriginalString}\")", out var exception);
+            var result = Runtime.InvokeJavascript($"WebSocketInterop.connect({GetHandle()}, \"{uri.OriginalString}\")", out var exception);
 
             if (exception != 0)
             {
@@ -83,7 +83,7 @@ namespace Uno.Wasm.WebSockets
                 try
                 {
                     var str = $"WebSocketInterop.send({GetHandle()}, {pinnedData}, {segment.Count}, {segment.Offset})";
-                    var invocationResult = Runtime.InvokeJS(str, out var result);
+                    var invocationResult = Runtime.InvokeJavascript(str, out var result);
 
                     if (result != 0)
                     {
@@ -138,7 +138,7 @@ namespace Uno.Wasm.WebSockets
             _closeStatusDescription = statusDescription;
 
             var str = $"WebSocketInterop.close({GetHandle()}, {(int)closeStatus}, \"{statusDescription}\")";
-            var invocationResult = Runtime.InvokeJS(str, out var result);
+            var invocationResult = Runtime.InvokeJavascript(str, out var result);
 
             if (result != 0)
             {
