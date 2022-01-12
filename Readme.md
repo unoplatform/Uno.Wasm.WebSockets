@@ -1,3 +1,7 @@
+# Notice
+
+**This repository is now deprecated, as the support for `ClientWebSocket` is included in the .NET runtime support for WebAssembly.**
+
 # Uno.Wasm.WebSockets
 
 Uno.Wasm.WebSockets is a concrete implementation of the [System.Net.WebSocket](https://docs.microsoft.com/en-us/dotnet/api/system.net.websockets) 
