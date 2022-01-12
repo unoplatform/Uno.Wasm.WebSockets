@@ -1,6 +1,6 @@
 # Notice
 
-**This repository is now deprecated, as the support for `ClientWebSocket` is included in the .NET runtime support for WebAssembly.**
+**This repository is now deprecated, as the support for `ClientWebSocket` is included in .NET 6 for WebAssembly.**
 
 # Uno.Wasm.WebSockets
 
